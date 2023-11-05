@@ -814,9 +814,27 @@ div#captcha15360 > div{
 	height: 100%;
 }
 .news-card {
+	display: none;
     width: 33%;
 		padding: 10px;
 }
+
+#show-more-button {
+    display: block;
+    margin: 20px auto;
+    background-color: #C71B1B;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+#show-more-button:hover {
+    background-color: #9c0000; 
+}
+
 .news-card img {
 	    margin-bottom: 10px;
     width: 100%;
@@ -5306,6 +5324,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 <!-- #container -->
 <!--*********end*****************-->
+
+<button id="show-more-button">Show More</button>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const showMoreButton = document.getElementById("show-more-button");
+        const newsMain = document.querySelector(".news-main");
+        const newsCards = Array.from(newsMain.querySelectorAll(".news-card"));
+
+        let hiddenCards = newsCards.slice(9);
+
+        newsCards.slice(0, 9).forEach(function (card) {
+            card.style.display = "flex";
+        });
+
+        showMoreButton.addEventListener("click", function () {
+            hiddenCards.slice(0, 9).forEach(function (card) {
+                card.style.display = "flex";
+            });
+
+            hiddenCards = hiddenCards.slice(12);
+
+            if (hiddenCards.length <= 0) {
+                showMoreButton.style.display = "none";
+            }
+        });
+    });
+</script>
+
+
+
+
+
 
 </div>
 </div>
